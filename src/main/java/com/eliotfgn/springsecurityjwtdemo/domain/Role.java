@@ -1,6 +1,6 @@
 package com.eliotfgn.springsecurityjwtdemo.domain;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 public class Role {
