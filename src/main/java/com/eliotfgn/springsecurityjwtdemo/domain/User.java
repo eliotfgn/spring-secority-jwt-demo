@@ -2,10 +2,13 @@ package com.eliotfgn.springsecurityjwtdemo.domain;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "users_")
+@Table(name = "users_", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "username")
+})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,12 +16,13 @@ public class User {
     private Long id;
     private String username;
     private String password;
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     private List<Role> roles;
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+        this.roles = new ArrayList<>();
     }
 
     public User() {
